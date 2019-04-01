@@ -1,0 +1,43 @@
+﻿@model IndexModel
+
+
+<div class="center-content">
+    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Predict">
+        <h1><b>Hotdog or Burger?</b></h1>
+
+        @{ if (Model.Image != null)
+            {
+                <img src="@Model.Image" id="blah" class="marginized" height="200" width="200" />
+            }
+            else
+            {
+                <img id="blah"  class="marginized" height="200" width="200" />
+            }
+        }
+        <input class="center-block" type='file' name="file" onchange="readURL(this);" />
+        <input type="submit" value="What is it?"  class="marginized" />
+
+        @{ if (Model.Prediction != null)
+            { <h2 id="answer"  class="marginized"> This is a @Model.Prediction! </h2>
+        }
+        }
+
+    </form>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(200)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</div>
