@@ -23,12 +23,12 @@ namespace CustomVisionAspDemo.Controllers
             {
                 CustomVisionPredictionClient endpoint = new CustomVisionPredictionClient()
                 {
-                    ApiKey = "4a6f15ad57c941b1b72e215f6f69c410",
-                    Endpoint = "https://southeastasia.api.cognitive.microsoft.com/"
+                    ApiKey = "{set api key here}",
+                    Endpoint = "{set endpoint here}"
                 };
 
-                var result = await endpoint.ClassifyImageAsync(new Guid("6e8a2de4-a37d-4649-b9f6-d30f9a53052d"),
-                    "Iteration1", image);
+                var result = await endpoint.ClassifyImageAsync(new Guid("{set project id here}"),
+                    "{set iteration here}", image);
 
                 return View("Index", new IndexModel() { Image = convertFileToString(file), Prediction = result.Predictions[0].TagName });
             }
